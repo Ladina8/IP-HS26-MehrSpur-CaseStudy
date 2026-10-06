@@ -175,16 +175,10 @@ globals().update(NOMINAL_PARAMS)
 # -----------------------------------------------------------------------------
 CORRIDOR_REGIONS = {  # Named municipality groups defining the modeled corridor.
     "Zürich": ["Zürich"],
-    "Winterthur": ["Winterthur"],
-    "Airport / Glattal": [
-        "Kloten", "Opfikon", "Wallisellen", "Dübendorf",
-        "Dietlikon", "Wangen-Brüttisellen", "Bassersdorf", "Rümlang",
-        "Illnau-Effretikon", "Lindau", "Nürensdorf"
-    ],
-    "Eastern Switzerland (Gateways)": [
-        "Wiesendangen", "Elsau",
-        "Elgg", "Hagenbuch"
-    ]
+    "Lake Zürich / Glattal": ["Küsnacht (ZH)", "Zollikon", "Zumikon"],
+    "Oberland / Zürcher Unterland": ["Maur", "Egg", "Oetwil am See", "Uster", "Mönchaltorf", 
+    "Fällanden", "Schwerzenbach"]
+    
 }
 
 # Flat list of all corridor municipalities
@@ -413,5 +407,5 @@ STRUCTURAL_UNCERTAINTIES = {  # Distributions for selected general parameters; n
 # Validate settings and prepare internal surrogate metadata.
 uc.configure(
     registry=STRUCTURAL_UNCERTAINTIES, nominal=NOMINAL_PARAMS,
-    n_years=N_YEARS, tail_probability=TRANSPORT_SURROGATE_TAIL_PROBABILITY,
+    n_years= N_YEARS, tail_probability=TRANSPORT_SURROGATE_TAIL_PROBABILITY,
 )
