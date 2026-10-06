@@ -175,9 +175,8 @@ globals().update(NOMINAL_PARAMS)
 # -----------------------------------------------------------------------------
 CORRIDOR_REGIONS = {  # Named municipality groups defining the modeled corridor.
     "Zürich": ["Zürich"],
-    "Lake Zürich / Glattal": ["Küsnacht (ZH)", "Zollikon", "Zumikon"],
-    "Oberland / Zürcher Unterland": ["Maur", "Egg", "Oetwil am See", "Uster", "Mönchaltorf", 
-    "Fällanden", "Schwerzenbach"]
+    "Lake Zürich": ["Küsnacht (ZH)", "Zollikon", "Zumikon"],
+    "Pfannenstiel": ["Egg", "Fällanden", "Maur", "Mönchaltorf", "Oetwil am See", "Schwerzenbach", "Uster"]
     
 }
 
