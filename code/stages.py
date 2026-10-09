@@ -172,7 +172,7 @@ PACKAGES = {
             {
                 "name": "Mobility Hub Forch (Küsnacht/Maur)",
                 "zones": [
-                    {"municipality_name": "Küsnacht"},
+                    {"municipality_name": "Küsnacht (ZH)"},
                     {"municipality_name": "Maur"},
                 ],
                 "effects": {
@@ -239,9 +239,9 @@ PACKAGES = {
             {
                 "name": "Bike and Ride Feeder Routes (Maur-Forch)",
                 "area_pairs": [
-                    {"origin": {"municipality_name": "Maur"}, "destination": {"municipality_name": "Küsnacht"}},
+                    {"origin": {"municipality_name": "Maur"}, "destination": {"municipality_name": "Küsnacht (ZH)"}},
                     {"origin": {"municipality_name": "Maur"}, "destination": {"municipality_name": "Zürich"}},
-                    {"origin": {"municipality_name": "Küsnacht"}, "destination": {"municipality_name": "Zürich"}}
+                    {"origin": {"municipality_name": "Küsnacht (ZH)"}, "destination": {"municipality_name": "Zürich"}}
                 ],
                 "both_directions": True,
                 "effects": {
