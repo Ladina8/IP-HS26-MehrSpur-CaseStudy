@@ -153,7 +153,7 @@ PACKAGES = {
 
 
     "stations": {
-        "name": "Stage 1 – Local Stations & Access Package",
+        "name": "Stage 1 – Mobility Hub Forch Basic & Feeder Bus 702",
 
         # Railway improvements
         # Section minutes follow parameters.SECTION route coverage, including
@@ -161,8 +161,8 @@ PACKAGES = {
         # between different CORRIDOR_MUNICIPALITIES, in both directions.
         "railway_expansions": [
             {
-                "section_time_saving_min": 1.0,  # In-vehicle minutes saved relative to baseline.
-                "headway_reduction_min": 1.0,  # Minutes removed from the baseline service interval.
+                "section_time_saving_min": 0.5,  # Barrier-free level boarding speeds up passenger dwell time
+                "headway_reduction_min": 0.0,  # Baseline S18 15-min headway remains unchanged
                 "capacity_increase": 0.10,  # Fraction of baseline peak-hour comfort capacity (+10%).
             },
         ],
@@ -170,17 +170,16 @@ PACKAGES = {
         # Hub & Node Interventions
         "mobility_hubs": [
             {
-                "name": "Station Upgrades (Dietlikon, Bassersdorf, Wallisellen)",
+                "name": "Mobility Hub Forch (Küsnacht/Maur)",
                 "zones": [
-                    {"municipality_name": "Dietlikon"},
-                    {"municipality_name": "Bassersdorf"},
-                    {"municipality_name": "Wallisellen"}
+                    {"municipality_name": "Küsnacht"},
+                    {"municipality_name": "Maur"},
                 ],
                 "effects": {
-                    "access_time_reduction_pct": 25.0,  # Improved pedestrian ramps & bus loop access
-                    "transfer_time_reduction_pct": 15.0, # Shorter platform transfer paths
+                    "access_time_reduction_pct": 25.0,  # Underground parking spots for MIV and bikes direct platform connection
+                    "transfer_time_reduction_pct": 30.0, # Bus-rail interchange improvement at new mobility hub
                     # Frequency savings belong to the railway package only.
-                    "egress_time_reduction_pct": 20.0,
+                    "egress_time_reduction_pct": 20.0, # Step-free pathways to surrounding neighborhood
                 }
             }
         ],
@@ -193,12 +192,12 @@ PACKAGES = {
         # Set capital_share to 0 to disable residual valuation (lifetime may then be None).
         # No asset replacement is assumed.
         "appraisal": {
-            "capital_cost_chf": 925_000_000,  # Station-package CAPEX (CHF).
-            "lifetime_years": 80,  # Service life of the share valued below (years).
-            "capital_share": 0.60,  # Fraction of actual capital paid eligible for residual value.
+            "capital_cost_chf": 28_500_000,  # CAPEX: Park and Ride (15M), Open Space Train Station (8.5M), Bike and Ride 300 spaces (5M)
+            "lifetime_years": 60,  # Service life of the share valued below (years).
+            "capital_share": 0.70,  # Fraction of actual capital paid eligible for residual value.
             # Total construction emissions (tonnes CO2e), spread over construction years.
             # Pre-horizon emissions are charged at time zero; omitted entries mean zero.
-            # "construction_co2_tonnes": 0.0,  # Add a project-specific total when available.
+             "construction_co2_tonnes": 12_500.0,  # Add a project-specific total when available.
         },
     },
 
@@ -224,39 +223,40 @@ PACKAGES = {
     #       Provides 17-minute service and the Winterthur hub improvements;
     #       both packages together provide 15-minute service.
     "tunnel": {
-        "name": "Stage 2 - Tunnel & Winterthur Hub only",
+        "name": "Stage 2 - Forch Express, Bus Frequency & Bike Highway",
 
         # Railway improvements: the same section and service OD scope as above.
         "railway_expansions": [
             {
-                "section_time_saving_min": 4.0,  # In-vehicle minutes saved relative to baseline.
-                "headway_reduction_min": 3.0,  # Minutes removed from the baseline service interval.
-                "capacity_increase": 0.15,  # Fraction of baseline peak-hour comfort capacity (+15%).
+                "section_time_saving_min": 2.0,  # In-vehicle time savings via 80 km/h speedup and double-track
+                "headway_reduction_min": 2.5,  # Bus 706 from Schwerzenbach headway reduced from 30 to 15 min, Factor from the S18 Railway view
+                "capacity_increase": 0.2,  # Fraction of baseline peak-hour comfort capacity (+15%).
             },
         ],
 
-        # Hub & Node Interventions
-        "mobility_hubs": [
+# Optional: Active Mobility / Cycle Feeder Routes
+        "bike_highways": [
             {
-                "name": "Winterthur Multimodal Hub (A1)",
-                "zones": [
-                    {"municipality_name": "Winterthur"}
+                "name": "Bike and Ride Feeder Routes (Maur-Forch)",
+                "area_pairs": [
+                    {"origin": {"municipality_name": "Maur"}, "destination": {"municipality_name": "Küsnacht"}},
+                    {"origin": {"municipality_name": "Maur"}, "destination": {"municipality_name": "Zürich"}},
+                    {"origin": {"municipality_name": "Küsnacht"}, "destination": {"municipality_name": "Zürich"}}
                 ],
+                "both_directions": True,
                 "effects": {
-                    "access_time_reduction_pct": 25.0,
-                    "transfer_time_reduction_pct": 15.0, # Optimized platform connections at Winterthur HB
-                    # Frequency savings belong to the railway package only.
-                    "egress_time_reduction_pct": 20.0,
+                    "distance_reduction_pct": 10.0,
+                    "speed_increase_pct": 15.0
                 }
             }
         ],
 
         # Appraisal considerations: the same valuation and construction conventions.
         "appraisal": {
-            "capital_cost_chf": 2_302_600_000,  # Tunnel/Winterthur package CAPEX (CHF).
-            "lifetime_years": 80,  # Service life of the share valued below (years).
-            "capital_share": 0.60,  # Fraction of actual capital paid eligible for residual value.
-            "construction_co2_tonnes": 300_000.0,  # Total construction emissions (tonnes CO2e).
+            "capital_cost_chf": 42_000_000,  # CAPEX (CHF): S18 upgrade (24M), Bike Feeder Routes (13M), B+R +100 parking spaces (5M)
+            "lifetime_years": 50,  # Service life of the share valued below (years).
+            "capital_share": 0.65,  # Fraction of actual capital paid eligible for residual value.
+            "construction_co2_tonnes": 18_000.0,  # Total construction emissions (tonnes CO2e).
         },
     },
 }
@@ -270,8 +270,8 @@ PACKAGES = {
 COMBINED_EFFECTS = {
     "railway_expansions": [
         {
-            "section_time_saving_min": 1.0,
-            "headway_reduction_min": 1.0,
+            "section_time_saving_min": 0.5,  # Extra in-vehicle time saving when both packages operate.
+            "headway_reduction_min": 1.0, # Synchronized interchange (Bus 706 / S18)
             "capacity_increase": 0.05,  # Extra fraction of baseline capacity, only when both packages operate.
         },
     ],
@@ -292,7 +292,7 @@ COMBINED_EFFECTS = {
 # INTERNAL ASSEMBLY AND APPRAISAL HELPERS (normally leave unchanged)
 # =============================================================================
 STATE_IDS = (0, 1, 2, 3)
-STATE_LABELS = {0: "Baseline", 1: "Stations only", 2: "Tunnel only", 3: "Stations + tunnel"}
+STATE_LABELS = {0: "Baseline", 1: "Hub Basic & Bus 702", 2: "Forch Express, Bus Frequency & Bike Routes", 3: "Both Stages combined"}
 STATE_COLORS = {0: "#9E9E9E", 1: "#FFC107", 2: "#2196F3", 3: "#4CAF50"}
 _STATE_COMPONENTS = {0: (False, False), 1: (True, False), 2: (False, True), 3: (True, True)}
 
